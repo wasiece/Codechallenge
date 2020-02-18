@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>RESTful API</title>
+  </head>
+  <body bgcolor="pink">
+    <h2>
+        <marquee behavior="" direction="">Balance</marquee></h2>
+    <a href="" id="a">This will display the result </a>
+    <p id="id03"></p>
+    <div id="id02"> </div>
+        <script language="JavaScript">
+        function computbalance(arr) {
+            var pers = arr.persons;
+            var foodnames = Object.keys(arr.contributions[pers[0]]);
+
+            var meanfoods = Array(foodnames.length).fill(0);
+            var balance = arr.contributions;
+            var key1;
+            var key2;
+            for(key1 of pers) {
+                var i = 0;
+                for(key2 of foodnames) {
+                        meanfoods[i] += arr.contributions[key1][key2];
+                        i+=1;
+                }
+            }
+            
+            for(key1 of pers) {
+                var i = 0;
+                for(key2 of foodnames) {
+                        balance[key1][key2] -= meanfoods[i]/pers.length;
+                        i+=1;
+                }
+            }
+            
+
+            document.getElementById("id03").innerHTML = '<p>' + JSON.stringify(balance) + '</p>';
+
+        }
+
+        </script>
+        <script src="picknickdata.js"></script> 
+  </body>
+</html>

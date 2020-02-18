@@ -1,0 +1,26 @@
+computbalance(
+{
+    "persons": [
+        "alice",
+        "bob",
+        "eve"
+    ],
+    "contributions":{
+        "alice": {
+            "apple":3,
+            "peach":12,
+            "pear":5
+        },
+        "bob": {
+            "apple":0,
+            "peach":6,
+            "pear":1
+        },
+        "eve": {
+            "apple":0,
+            "peach":0,
+            "pear":0
+        },
+    }
+}
+);
