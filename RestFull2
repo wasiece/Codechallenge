@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>RESTful API</title>
+  </head>
+  <body bgcolor="pink">
+    <h2>
+        <marquee behavior="" direction="">Balance</marquee></h2>
+    <a href="" id="a">Please Download this file </a>
+    <p id="id03"></p>
+    <div id="id02"> </div>
+        <script language="JavaScript">
+        function computbalance(arr) {
+
+            var pers = arr.persons; // An array with the name of people
+
+            var foodnames = Object.keys(arr.contributions[pers[0]]); // An Array with the name of fruits
+
+
+            var meanfoods = Array(foodnames.length).fill(0); // A mean arrray is created with the length same as the foodnames array length with all elements as zero in it
+
+            var balance = arr.contributions; // the output looks like contribution but with the little modifications in the keys of fruits
+            var key1;
+            var key2;
+            // the first for loop to compute the sum of all the fruits in every category in an array
+            for(key1 of pers) {
+                var i = 0;
+                for(key2 of foodnames) {
+                        meanfoods[i] += arr.contributions[key1][key2];
+                        i+=1;
+
+                }
+             document.getElementById("id03").innerHTML = '<p>' + meanfoods.toString() + '</p>';
+
+            }
+            // in the second you take a balance variable which contains all the contributions we subtract the mean from the contribution of fruits
+            for(key1 of pers) {
+                var i = 0;
+                for(key2 of foodnames) {
+                        balance[key1][key2] -= meanfoods[i]/pers.length;
+                        i+=1;
+                }
+            }
+            
+
+            document.getElementById("id03").innerHTML = '<p>' + JSON.stringify(balance) + '</p>';
+            
+            download(JSON.stringify(balance), "balance.txt", "text/plain"); // this will download the file the plane text format
+
+            function download(text, name, type) {
+            var a = document.getElementById("a");
+            var file = new Blob([text], {type: type});
+            a.href = URL.createObjectURL(file);
+            a.download = name;
+        }
+
+
+        }
+
+        </script>
+        <script src="picknickdata.js"></script> 
+  </body>
+</html>
